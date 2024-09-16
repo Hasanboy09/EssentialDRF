@@ -2,6 +2,7 @@ import random
 
 from drf_spectacular.utils import extend_schema
 from rest_framework import permissions
+from rest_framework.generics import RetrieveUpdateDestroyAPIView, CreateAPIView, ListCreateAPIView
 from rest_framework.parsers import FileUploadParser, MultiPartParser, FormParser
 from rest_framework.response import Response
 from rest_framework.status import HTTP_200_OK
@@ -39,7 +40,7 @@ class SendEmail(APIView):
 
 
 @extend_schema(tags=['book'])
-class BookModelViewSet(ModelViewSet):
+class BookRetrieveUpdateDestroyAPIView(RetrieveUpdateDestroyAPIView):
     queryset = Book.objects.all()
     serializer_class = BookSerializer
     # parser_classes = (MultiPartParser, FormParser)
@@ -51,8 +52,14 @@ class BookModelViewSet(ModelViewSet):
     #     return Response(response)
 
 
+@extend_schema(tags=['book'])
+class BookCreateAPIView(ListCreateAPIView):
+    queryset = Book.objects.all()
+    serializer_class = BookSerializer
+
+
 @extend_schema(tags=['unit'])
-class UnitModelViewSet(ModelViewSet):
+class UnitCreateAPIView(CreateAPIView):
     queryset = Unit.objects.all()
     serializer_class = UnitSerializer
     parser_classes = [FileUploadParser]

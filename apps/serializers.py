@@ -11,7 +11,7 @@ class RegisterUserSerializer(ModelSerializer):
         extra_kwargs = {
             "password": {
                 "write_only": True,
-            }
+            },
         }
 
     def validate(self, attrs):
@@ -23,13 +23,13 @@ class RegisterUserSerializer(ModelSerializer):
 class BookSerializer(ModelSerializer):
     class Meta:
         model = Book
-        exclude = 'slug',
+        exclude = 'slug', 'image'
 
 
 class UnitSerializer(ModelSerializer):
     class Meta:
         model = Unit
-        fields = '__all__'
+        exclude = 'slug', 'file'
 
 
 class TestSerializer(ModelSerializer):
