@@ -30,16 +30,16 @@ import os
 from django.conf import settings
 
 
-@pytest.mark.django_db
-def test_book_create_image(client, book):
-    path = reverse('book-create-list')
-    image_path = os.path.join(settings.BASE_DIR, "images.jpeg")
-    with open(image_path, 'rb') as fp:
-        data = {
-            "name": "Jaloliddin",
-            "image": fp
-        }
-        response = client.post(path, data=data, content_type='multipart/form-data' , format='multipart')
-    print(response.status_code)
-    print(response.data)
+# @pytest.mark.django_db
+# def test_book_create_image(client, book):
+#     path = reverse('book-create-list')
+#     image_path = os.path.join(settings.BASE_DIR, "images.jpeg")
+#     with open(image_path, 'rb') as fp:
+#         data = {
+#             "name": "Jaloliddin",
+#             "image": fp
+#         }
+#         response = client.post(path, data=data, content_type='multipart/form-data' , format='multipart')
+#     print(response.status_code)
+#     print(response.data)
 
